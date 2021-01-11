@@ -14,3 +14,15 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Upload to blob storage
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+            az storage blob upload-batch --account-name storagestaticarticle -d '$web' -s .
+    - name: Purge CDN endpoint
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+            az cdn endpoint purge --content-paths  "/*" --profile-name "cdnstoragestaticarticle" --name "cdnstoragestaticarticle" --resource-group "storage-blog"
