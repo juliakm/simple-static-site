@@ -26,3 +26,7 @@ jobs:
         azcliversion: 2.0.72
         inlineScript: |
             az cdn endpoint purge --content-paths  "/*" --profile-name "cdnstoragestaticarticle" --name "cdnstoragestaticarticle" --resource-group "storage-blog"
+            
+    - name: logout
+      run: |
+            az logout
