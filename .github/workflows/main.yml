@@ -24,7 +24,7 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-            az cdn endpoint purge --content-paths  "/*" --profile-name "ghastaticcdn" --name "ghastaticcdn" --resource-group "storage-blog"
+            az cdn endpoint purge --content-paths  "/*" --profile-name "ghastaticcdn" --name "ghastaticcdn" --resource-group "DefaultResourceGroup-EUS2"
             
     - name: logout
       run: |
