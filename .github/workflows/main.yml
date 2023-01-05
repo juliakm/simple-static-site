@@ -19,7 +19,7 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-            az storage blob upload-batch --account-name ghastaticdocs -d '$web' -s .
+            az storage blob sync --account-name ghastaticdocs -d '$web' -s . --exclude-path ".github;.git
     - name: Purge CDN endpoint
       uses: azure/CLI@v1
       with:
