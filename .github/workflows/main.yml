@@ -10,20 +10,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:            
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
-        azcliversion: 2.0.72
         inlineScript: |
             az storage blob sync --account-name ghastaticdocs -d '$web' -s . --exclude-path ".github;.git
     - name: Purge CDN endpoint
       uses: azure/CLI@v1
       with:
-        azcliversion: 2.0.72
         inlineScript: |
             az cdn endpoint purge --content-paths  "/*" --profile-name "ghastaticcdn" --name "ghastaticcdn" --resource-group "storage-blog"
             
