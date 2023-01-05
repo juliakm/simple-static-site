@@ -19,13 +19,13 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-            az storage blob upload-batch --account-name storagestaticarticle -d '$web' -s .
+            az storage blob upload-batch --account-name ghastaticdocs -d '$web' -s .
     - name: Purge CDN endpoint
       uses: azure/CLI@v1
       with:
         azcliversion: 2.0.72
         inlineScript: |
-            az cdn endpoint purge --content-paths  "/*" --profile-name "cdnstoragestaticarticle" --name "cdnstoragestaticarticle" --resource-group "storage-blog"
+            az cdn endpoint purge --content-paths  "/*" --profile-name "ghastaticcdn" --name "ghastaticcdn" --resource-group "storage-blog"
             
     - name: logout
       run: |
